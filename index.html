@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống Quản lý Ticket Hỗ trợ Khách hàng - Phiên Bản Ảo Hóa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-950 min-h-screen text-slate-300 font-sans p-4 lg:p-8 relative overflow-x-hidden">
+
+    <div id="glow-blob"></div>
+    <div id="glow-blur"></div>
+
+    <div class="max-w-[1400px] mx-auto space-y-6 relative z-10" id="main-container">
+        
+        <!-- PHẦN ĐẦU (HEADER) -->
+        <header class="hologram-panel p-6 rounded-2xl relative overflow-hidden group border border-slate-800 bg-slate-900/50 backdrop-blur-md">
+            <div class="relative z-10 flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6">
+                <div class="text-left">
+                    <h1 class="text-3xl lg:text-4xl font-extrabold tracking-tight text-cyan-400 mb-2 neon-text">
+                        <i class="fas fa-satellite-dish mr-3"></i>Mô Phỏng<br>Hệ Thống Quản Lý Ticket
+                    </h1>
+                    <p class="text-cyan-600/80 font-mono text-sm tracking-widest uppercase">
+                        [ DASA230179 - Data structure and Algorithm ]
+                    </p>
+                </div>
+
+                <div class="bg-slate-900/80 p-4 rounded-xl border border-cyan-500/30 w-full xl:w-auto">
+                    <h3 class="text-sm font-bold text-cyan-300 mb-3 border-b border-cyan-500/30 pb-2 flex items-center font-mono">
+                        <i class="fas fa-users-cog mr-2"></i> NHÀ PHÁT TRIỂN
+                    </h3>
+                    <!-- Đã sửa lại CSS cho danh sách tự rớt dòng đẹp mắt -->
+                    <ul class="flex flex-wrap gap-x-6 gap-y-3 text-xs font-medium text-slate-400 mt-2">
+                        <li class="hover-glow transition-colors"><span class="text-cyan-400 font-mono mr-1">ID:</span> ng-aulnzz</li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <!-- KHÔNG GIAN LÀM VIỆC CHÍNH -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- CỘT TRÁI -->
+            <div class="lg:col-span-4 flex flex-col gap-6">
+                
+                <!-- NHẬP TICKET MỚI -->
+                <div class="magic-card rounded-2xl border border-slate-800 backdrop-blur-md">
+                    <div class="magic-card-border"></div>
+                    <div class="magic-card-content p-5">
+                        <h2 class="text-md font-bold text-emerald-400 mb-4 flex items-center justify-between font-mono uppercase">
+                            <span><i class="fas fa-plus-square mr-2 text-emerald-500"></i> Tạo Ticket Mới</span>
+                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded text-slate-400">Bộ lọc tự động</span>
+                        </h2>
+                        <div class="space-y-3 relative z-20 text-sm">
+                            <div class="flex gap-2">
+                                <input type="text" id="newId" placeholder="Mã (TKT-XX)" class="w-1/3 cyber-input p-2.5 rounded bg-slate-950 border border-slate-700 text-emerald-300">
+                                <input type="text" id="newName" placeholder="Tên khách hàng" class="w-2/3 cyber-input p-2.5 rounded bg-slate-950 border border-slate-700 text-emerald-300">
+                            </div>
+                            <input type="text" id="newIssue" placeholder="Bạn gặp sự cố gì ?" class="w-full cyber-input p-2.5 rounded bg-slate-950 border border-slate-700 text-emerald-300">
+                            <div class="flex gap-2 items-center">
+                                <span class="text-slate-400 text-xs font-mono w-24">Mức ưu tiên:</span>
+                                <input type="number" id="newPriority" value="1" min="1" max="999" class="w-20 cyber-input p-2 rounded bg-slate-950 border border-slate-700 text-emerald-300 text-center">
+                                <button onclick="submitNewTicket()" class="flex-1 cyber-btn bg-emerald-950 text-emerald-400 border border-emerald-500/50 p-2.5 rounded font-bold hover:bg-emerald-900 transition text-xs">
+                                    <i class="fas fa-paper-plane mr-1"></i> GỬI VÀO HÀNG CHỜ
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TRA CỨU TICKET -->
+                <div class="magic-card rounded-2xl border border-slate-800 backdrop-blur-md">
+                    <div class="magic-card-border"></div>
+                    <div class="magic-card-content p-5">
+                        <h2 class="text-md font-bold text-cyan-400 mb-4 flex items-center font-mono uppercase">
+                            <i class="fas fa-search mr-2 text-cyan-500"></i> Tra cứu Ticket
+                        </h2>
+                        <div class="flex gap-2 mb-3 relative z-20">
+                            <input type="text" id="searchInput" placeholder="Nhập mã (VD: TKT-03)" class="flex-1 cyber-input p-2.5 rounded bg-slate-950 border border-slate-700 text-cyan-300 text-sm">
+                            <button onclick="searchTicket()" class="cyber-btn bg-cyan-950 text-cyan-400 border border-cyan-500/50 px-5 rounded text-sm font-bold hover:bg-cyan-900 transition uppercase">Tìm</button>
+                        </div>
+                        <div id="searchResult" class="hidden bg-slate-950/80 p-3 rounded-lg border border-cyan-500/30 text-xs relative z-20"></div>
+                    </div>
+                </div>
+
+                <!-- GỢI Ý MẪU TRẢ LỜI -->
+                <div class="magic-card rounded-2xl border border-slate-800 backdrop-blur-md flex-1 min-h-[250px]">
+                    <div class="magic-card-border"></div>
+                    <div class="magic-card-content p-5">
+                        <h2 class="text-md font-bold text-fuchsia-400 mb-3 flex items-center font-mono uppercase">
+                            <i class="fas fa-brain mr-2 text-fuchsia-500"></i> Gợi ý tự động
+                        </h2>
+                        <textarea id="replyInput" oninput="suggestWords()" placeholder="Nhập từ khóa (VD: 'xin', 'vui lòng', 'lỗi',...)" class="w-full flex-1 cyber-input rounded-lg p-3 text-sm bg-slate-950 border border-slate-700 text-fuchsia-300 relative z-20 resize-none min-h-[80px]"></textarea>
+                        <div id="suggestBox" class="mt-2 space-y-2 max-h-32 overflow-y-auto custom-scrollbar relative z-20"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CỘT GIỮA (Hàng chờ SLA) -->
+            <div class="lg:col-span-4 magic-card rounded-2xl border border-slate-800 backdrop-blur-md h-[750px]">
+                <div class="magic-card-border"></div>
+                <div class="magic-card-content p-6">
+                    <div class="flex justify-between items-center mb-4 border-b border-rose-500/30 pb-3 relative z-20">
+                        <h2 class="text-lg font-bold text-rose-400 flex items-center font-mono uppercase">
+                            <i class="fas fa-layer-group text-rose-500 mr-3"></i> Hàng chờ xử lý
+                        </h2>
+                        <button onclick="extractMax()" class="cyber-btn bg-rose-950 text-rose-400 border border-rose-500/50 px-4 py-2 rounded-lg text-sm font-bold hover:bg-rose-900 transition flex items-center uppercase">
+                            <i class="fas fa-bolt mr-2"></i> solved 
+                        </button>
+                    </div>
+                    <div class="text-[10px] text-slate-500 mb-2 font-mono flex justify-between relative z-20">
+                        <span><i class="fas fa-info-circle mr-1"></i>Tự động sắp xếp</span>
+                        <span id="ticketCount">Tổng số: 0</span>
+                    </div>
+                    <div id="heapQueue" class="flex-1 overflow-y-auto custom-scrollbar space-y-3 pr-2 pb-2 relative z-20"></div>
+                </div>
+            </div>
+
+            <!-- CỘT PHẢI (Nhật ký hệ thống) -->
+            <div class="lg:col-span-4 magic-card rounded-2xl border border-slate-800 backdrop-blur-md h-[750px]">
+                <div class="magic-card-border"></div>
+                <div class="magic-card-content p-6">
+                    <div class="flex justify-between items-center mb-4 border-b border-amber-500/30 pb-3 relative z-20">
+                        <h2 class="text-lg font-bold text-amber-400 flex items-center font-mono uppercase">
+                            <i class="fas fa-shield-alt text-amber-500 mr-3"></i> Nhật ký hệ thống
+                        </h2>
+                        <button onclick="simulateHack()" class="cyber-btn bg-slate-900 text-slate-500 border border-slate-700 px-3 py-1.5 rounded text-[10px] font-bold hover:bg-red-950 hover:text-red-400 hover:border-red-500 transition uppercase" title="Giả lập bị Hack">
+                            <i class="fas fa-bug mr-1"></i> hacked 
+                        </button>
+                    </div>
+                    <div class="text-[10px] text-slate-500 mb-2 font-mono relative z-20">
+                        <i class="fas fa-lock mr-1"></i>Chuỗi dữ liệu chống gian lận
+                    </div>
+                    <div id="auditLog" class="flex-1 overflow-y-auto custom-scrollbar space-y-4 pr-2 relative z-20"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- NÚT RESET HỆ THỐNG DƯỚI CÙNG -->
+<div class="flex justify-center mt-8 relative z-20">
+    <button onclick="resetSystem()" class="cyber-btn bg-sky-900/60 text-sky-400 border border-sky-500 px-6 py-2.5 rounded-xl text-xs font-bold hover:bg-sky-500 hover:text-white transition-all uppercase tracking-widest shadow-[0_0_15px_rgba(14,165,233,0.4)]">
+        <i class="fas fa-sync-alt mr-2"></i> Khôi phục dữ liệu gốc
+    </button>
+</div>
+
+    <!-- KHUNG CẢNH BÁO (MODAL) -->
+    <div id="alertModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black/80 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div class="bg-slate-900 border-2 border-red-500 p-6 rounded-xl max-w-sm w-full shadow-[0_0_30px_rgba(239,68,68,0.3)] transform scale-95 transition-transform duration-300" id="alertContent">
+            <div class="text-red-500 text-4xl mb-4 text-center animate-pulse"><i class="fas fa-exclamation-triangle"></i></div>
+            <h3 class="text-xl font-bold text-white text-center mb-2 font-mono uppercase" id="alertTitle">CẢNH BÁO</h3>
+            <p class="text-slate-300 text-sm text-center mb-6 font-mono" id="alertMessage">Phát hiện hành vi bất thường!</p>
+            <button onclick="closeAlert()" class="w-full bg-red-950 hover:bg-red-900 text-red-400 border border-red-500 font-bold py-2 rounded transition uppercase">Xác nhận</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

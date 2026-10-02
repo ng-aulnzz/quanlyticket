@@ -1,0 +1,140 @@
+#glow-blob {
+    background-color: white;
+    height: 30vmax;
+    aspect-ratio: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    border-radius: 50%;
+    background: linear-gradient(to right, #06b6d4, #8b5cf6); 
+    animation: rotate 20s infinite;
+    opacity: 0.15;
+    z-index: 0;
+}
+
+#glow-blur {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 1;
+    backdrop-filter: blur(100px); 
+    top: 0; left: 0;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    50% { transform: scale(1.2) rotate(180deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* HIỆU ỨNG THẺ MAGIC CARD - ĐÃ SỬA LỖI LAYOUT */
+.magic-card {
+    position: relative;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.magic-card::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background: radial-gradient(
+        600px circle at var(--mouse-x) var(--mouse-y), 
+        rgba(255, 255, 255, 0.08), 
+        transparent 40%
+    );
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.magic-card:hover::before { opacity: 1; }
+
+.magic-card-border {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.magic-card:hover .magic-card-border { opacity: 1; }
+
+.magic-card-border::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background: radial-gradient(
+        400px circle at var(--mouse-x) var(--mouse-y), 
+        rgba(6, 182, 212, 0.5), 
+        transparent 40%
+    );
+    z-index: 1;
+}
+
+/* Fix lỗi Height Collapse: Bỏ absolute, dùng Flexbox */
+.magic-card-content {
+    background: rgba(15, 23, 42, 0.95);
+    position: relative; 
+    z-index: 2;
+    border-radius: inherit;
+    margin: 1px; /* Tạo khoảng trống 1px cho viền sáng */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ĐỊNH DẠNG CHỮ & NÚT BẤM */
+.neon-text {
+    text-shadow: 0 0 10px rgba(6, 182, 212, 0.5), 0 0 20px rgba(6, 182, 212, 0.3);
+}
+
+.hover-glow:hover {
+    color: #fff;
+    text-shadow: 0 0 8px #06b6d4;
+    cursor: pointer;
+}
+
+.cyber-input {
+    outline: none;
+    transition: all 0.2s;
+}
+.cyber-input:focus {
+    box-shadow: inset 0 0 8px rgba(6, 182, 212, 0.2);
+    border-color: #06b6d4;
+}
+
+.cyber-btn {
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    transition: all 0.2s;
+}
+.cyber-btn:hover {
+    box-shadow: 0 0 15px currentColor; 
+    transform: translateY(-2px);
+}
+
+/* THANH CUỘN (SCROLLBAR) */
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background-color: #334155; border-radius: 10px; }
+.custom-scrollbar:hover::-webkit-scrollbar-thumb { background-color: #06b6d4; }
+
+/* HIỆU ỨNG CHUYỂN ĐỘNG (ANIMATIONS) */
+.fade-in { animation: fadeIn 0.3s ease-in-out; }
+.slide-up { animation: slideUp 0.4s ease-out; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* HIỆU ỨNG KHUNG CẢNH BÁO (ALERT MODAL) */
+.modal-active {
+    display: flex !important;
+    opacity: 1 !important;
+}
+.modal-active > div {
+    transform: scale(1) !important;
+}
