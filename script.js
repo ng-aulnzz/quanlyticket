@@ -298,7 +298,7 @@ function addLog(action, user, isHack = false) {
             <div class="absolute -top-4 left-4 h-4 w-0.5" style="background-color: ${chainColor}; box-shadow: 0 0 5px ${chainColor}; opacity: 0.7;"></div>
             
             <div class="text-[10px] ${textClass} mb-1.5 font-mono flex items-center">
-                <i class="fas fa-link mr-1"></i> chuỗi trước: ${prevHash}
+                <i class="fas fa-link mr-1"></i> Previous Hash: ${prevHash}
             </div>
             <div class="text-[13px] font-bold ${isHack ? 'text-red-300' : 'text-slate-200'} mb-2 font-mono tracking-wide leading-tight">${action}</div>
             <div class="text-[11px] text-slate-400 flex justify-between border-t ${lineClass} pt-2 font-mono">
@@ -306,7 +306,7 @@ function addLog(action, user, isHack = false) {
                 <span>[${time}]</span>
             </div>
             <div class="text-[10px] ${textClass} mt-2 font-mono text-right ${isHack ? 'bg-red-950 border-red-900' : 'bg-slate-950 border-amber-900/50'} border p-1.5 rounded">
-                mã băm: ${currHash}
+                Current Hash: ${currHash}
             </div>
         </div>
     `;
