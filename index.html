@@ -18,13 +18,25 @@
         <!-- PHẦN ĐẦU (HEADER) -->
         <header class="hologram-panel p-6 rounded-2xl relative overflow-hidden group border border-slate-800 bg-slate-900/50 backdrop-blur-md">
             <div class="relative z-10 flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6">
-                <div class="text-left">
-                    <h1 class="text-3xl lg:text-4xl font-extrabold tracking-tight text-cyan-400 mb-2 neon-text">
-                        <i class="fas fa-satellite-dish mr-3"></i>Mô Phỏng<br>Hệ Thống Quản Lý Ticket
-                    </h1>
-                    <p class="text-cyan-600/80 font-mono text-sm tracking-widest uppercase">
-                        [ DASA230179 - Data structure and Algorithm ]
-                    </p>
+                <!-- CỤM LOGO VÀ TIÊU ĐỀ -->
+                <div class="flex items-center gap-5 text-left">
+                    
+                    <!-- Khung Logo (Kèm hiệu ứng phát sáng mờ đằng sau) -->
+                    <div class="relative shrink-0">
+                        <div class="absolute inset-0 bg-cyan-500/30 blur-lg rounded-full animate-pulse"></div>
+                        <img src="Logo_hcmute.png" alt="Logo HCMUTE" class="relative w-16 h-16 md:w-28 md:h-28 object-contain drop-shadow-[0_0_10px_rgba(6,182,212,0.8)]">
+                    </div>
+                    
+                    <!-- Tiêu đề -->
+                    <div>
+                        <h1 class="text-3xl lg:text-4xl font-extrabold tracking-tight text-cyan-400 mb-2 neon-text">
+                            Mô Phỏng<br>Hệ Thống Quản Lý Ticket
+                        </h1>
+                        <p class="text-cyan-600/80 font-mono text-sm tracking-widest uppercase">
+                            [ DASA230179 - Data structure and Algorithm ]
+                        </p>
+                    </div>
+                    
                 </div>
 
                 <div class="bg-slate-900/80 p-4 rounded-xl border border-cyan-500/30 w-full xl:w-auto">
