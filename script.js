@@ -59,6 +59,7 @@ function submitNewTicket() {
     }
 
     let issueLower = issue.toLowerCase();
+    let nameLower = name.toLowerCase(); // Chuẩn hóa tên để so sánh
 
     for (let word of spamKeywords) {
         if (issueLower.includes(word)) {
@@ -68,10 +69,16 @@ function submitNewTicket() {
         }
     }
 
-    let isDuplicate = tickets.some(t => t.status !== "Solved" && t.issue.toLowerCase() === issueLower);
+    // SỬA LOGIC: Trùng nội dung VÀ Trùng tên khách hàng (chưa Solved) mới bị coi là Spam
+    let isDuplicate = tickets.some(t => 
+        t.status !== "Solved" && 
+        t.issue.toLowerCase() === issueLower && 
+        t.name.toLowerCase() === nameLower
+    );
+    
     if (isDuplicate) {
-        addLog(`TỪ CHỐI TICKET: Phát hiện nội dung trùng lặp`, "BỘ_LỌC_TRÙNG_LẶP");
-        showAlert("PHÁT HIỆN TRÙNG LẶP", "Sự cố này đang nằm trong hàng chờ rồi. Vui lòng không spam nhiều lần!");
+        addLog(`TỪ CHỐI TICKET: Phát hiện khách hàng ${name} spam`, "BỘ_LỌC_TRÙNG_LẶP");
+        showAlert("PHÁT HIỆN TRÙNG LẶP", "Khách hàng này đã báo cáo sự cố tương tự và đang chờ xử lý. Vui lòng không spam!");
         return;
     }
 
